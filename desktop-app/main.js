@@ -26,7 +26,9 @@ const fsSync = require("fs");
     // =========================================================
 
     const CODEOS_WEB_PORT = 4173;
-    const CODEOS_ROOT = path.resolve(__dirname, "..");
+  const CODEOS_ROOT = app.isPackaged
+    ? path.join(process.resourcesPath, "codeos")
+    : path.resolve(__dirname, "..");
 
     let codeOSWebServer = null;
     let backendProcess = null;
@@ -812,12 +814,11 @@ async function startAIBackend() {
 
 
         mainWindow.loadFile(
-        path.join(
-            __dirname,
-            "..",
-            "index.html"
-        )
-    );
+    path.join(
+        CODEOS_ROOT,
+        "index.html"
+    )
+);
 
 
         mainWindow.once(
@@ -1437,11 +1438,10 @@ async function startAIBackend() {
 
 
             const workspacePath =
-                path.join(
-                    __dirname,
-                    "..",
-                    "workspace.html"
-                );
+    path.join(
+        CODEOS_ROOT,
+        "workspace.html"
+    );
 
 
             try {
@@ -1506,11 +1506,10 @@ async function startAIBackend() {
 
 
             const runnerPath =
-                path.join(
-                    __dirname,
-                    "..",
-                    "run.html"
-                );
+    path.join(
+        CODEOS_ROOT,
+        "run.html"
+    );
 
 
             try {

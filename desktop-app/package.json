@@ -24,17 +24,25 @@
   },
 
   "files": [
-    "main.js",
-    "preload.js",
+    "**/*",
+    "!node_modules/**/*"
+],
 
-    "../**/*",
-    "!../.env",
-    "!../**/.env",
-    "!../node_modules/**/*",
-    "!../desktop-app/node_modules/**/*",
-    "!../dist/**/*",
-    "!../.git/**/*",
-    "!../backend/node_modules/**/*"
+"extraResources": [
+    {
+        "from": "../",
+        "to": "codeos",
+        "filter": [
+            "**/*",
+            "!desktop-app/**",
+            "!backend/**",
+            "!node_modules/**",
+            "!**/node_modules/**",
+            "!**/.env",
+            "!**/.git/**",
+            "!**/dist/**"
+        ]
+    }
 ],
 
   "win": {
