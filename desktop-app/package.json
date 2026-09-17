@@ -46,15 +46,16 @@
 ],
 
   "win": {
+    "icon": "build/icon.jpg",
     "target": [
-      {
-        "target": "nsis",
-        "arch": [
-          "x64"
-        ]
-      }
+        {
+            "target": "nsis",
+            "arch": [
+                "x64"
+            ]
+        }
     ]
-  },
+},
 
   "nsis": {
 
