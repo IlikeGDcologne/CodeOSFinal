@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CodeOS DevTools</title>
+
+    <link rel="stylesheet" href="devtools.css" />
+  </head>
+
+  <body>
+    <div class="devAmbient devAmbientOne"></div>
+    <div class="devAmbient devAmbientTwo"></div>
+
+    <header class="devHeader">
+      <div class="devBrand" onclick="location.href = 'plus.html'">
+        <div class="devLogo">👾</div>
+
+        <div>
+          <div class="devBrandName">CodeOS</div>
+
+          <div class="devBrandSub">DEVTOOLS</div>
+        </div>
+      </div>
+
+      <div class="devHeaderRight">
+        <span id="membershipStatus"> CHECKING MEMBERSHIP... </span>
+
+        <button class="backButton" onclick="location.href = 'plus.html'">
+          ← Plus+
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="portalHero" id="portalHero">
+        <div class="portalBadge">🛠️ CODEOS DEVELOPER PORTAL</div>
+
+        <h1>
+          Enter the
+          <span>DevTools Vault.</span>
+        </h1>
+
+        <p>
+          Unlock your CodeOS DevTools extension using your unique Plus+ secret
+          code.
+        </p>
+      </section>
+
+      <!-- ACCESS -->
+      <section class="accessCard" id="accessCard">
+        <div class="vaultIcon">🔐</div>
+
+        <div class="accessContent">
+          <div class="eyebrow">DEVELOPER AUTHENTICATION</div>
+
+          <h2>Enter your DevTools code</h2>
+
+          <p>
+            Your code looks something like
+            <code>D8Vdi2</code>.
+          </p>
+
+          <div class="codeInputWrap">
+            <span class="inputIcon"> ⌁ </span>
+
+            <input
+              id="devToolsCodeInput"
+              maxlength="6"
+              placeholder="D8Vdi2"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+
+          <button class="unlockButton" id="unlockButton">
+            <span>Unlock DevTools</span>
+            <span>→</span>
+          </button>
+
+          <div class="validationMessage" id="validationMessage"></div>
+        </div>
+      </section>
+
+      <!-- SUCCESS -->
+      <section class="unlockedSection hidden" id="unlockedSection">
+        <div class="luxuryVisual">
+          <div class="luxuryOrb"></div>
+
+          <div class="luxuryRing ringOne"></div>
+          <div class="luxuryRing ringTwo"></div>
+          <div class="luxuryRing ringThree"></div>
+
+          <div class="luxuryIcon">🛠️</div>
+
+          <div class="spark spark1">✦</div>
+          <div class="spark spark2">✧</div>
+          <div class="spark spark3">✦</div>
+          <div class="spark spark4">✧</div>
+        </div>
+
+        <div class="extensionPanel">
+          <div class="successBadge">✓ ACCESS GRANTED</div>
+
+          <div class="eyebrow">CODEOS DEVTOOLS EXTENSION</div>
+
+          <h2>Your DevTools extension is ready.</h2>
+
+          <p>
+            You've been authenticated as a CodeOS developer. Install the Chrome
+            extension to add CodeOS DevTools directly inside Chrome Developer
+            Tools.
+          </p>
+
+          <!-- EXTENSION CARD -->
+
+          <div class="extensionFile">
+            <div class="fileIcon">🧩</div>
+
+            <div class="fileInfo">
+              <strong> CodeOS DevTools </strong>
+
+              <span> Chrome Extension · Manifest V3 </span>
+            </div>
+
+            <span class="fileStatus"> READY </span>
+          </div>
+
+          <!-- INSTALL STEPS -->
+
+          <div class="installSteps">
+            <div class="installStep">
+              <div class="stepNumber">01</div>
+
+              <div>
+                <strong> Download </strong>
+
+                <span> Download the CodeOS DevTools extension package. </span>
+              </div>
+            </div>
+
+            <div class="installStep">
+              <div class="stepNumber">02</div>
+
+              <div>
+                <strong> Extract </strong>
+
+                <span> Unzip the downloaded extension folder. </span>
+              </div>
+            </div>
+
+            <div class="installStep">
+              <div class="stepNumber">03</div>
+
+              <div>
+                <strong> Load Unpacked </strong>
+
+                <span> Open Chrome Extensions and choose Load unpacked. </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DOWNLOAD -->
+
+          <button class="downloadExtensionButton" id="downloadExtension">
+            <span class="downloadIcon"> ↓ </span>
+
+            <span> Download Chrome Extension </span>
+
+            <span> → </span>
+          </button>
+
+          <div class="chromeInstruction">
+            <div class="chromeInstructionIcon">🌐</div>
+
+            <div>
+              <strong> After downloading </strong>
+
+              <span>
+                Go to
+                <code>chrome://extensions</code>, enable Developer mode, then
+                click <b>Load unpacked</b>.
+              </span>
+            </div>
+          </div>
+
+          <button class="secondaryDevButton" id="backToPlus">
+            ← Return to Plus+
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast hidden" id="toast">Copied!</div>
+
+    <script src="codeos-plus.js"></script>
+    <script src="devtools.js"></script>
+  </body>
+</html>

@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>.cdx — CodeOS Terminal</title>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div id="desktop">
+      <div id="wallpaper"></div>
+
+      <div class="desktop-topbar" id="terminalMenuBar">
+        <div class="apple"></div>
+
+        <div class="menu-item active" data-menu="terminal">Terminal</div>
+
+        <div class="menu-item" id="homeMenuItem">🏠 Home</div>
+
+        <div class="menu-item" data-menu="file">File</div>
+
+        <div class="menu-item" data-menu="edit">Edit</div>
+
+        <div class="menu-item" data-menu="view">View</div>
+
+        <div class="menu-item" data-menu="shell">Shell</div>
+
+        <div class="menu-item" data-menu="window">Window</div>
+
+        <div class="menu-item" data-menu="help">Help</div>
+
+        <div class="topbar-spacer"></div>
+
+        <div id="clock"></div>
+      </div>
+
+      <div id="codeOSTerminalMenus"></div>
+
+      <div id="windows"></div>
+
+      <div class="dock">
+        <button onclick="newTerminal()" class="dock-icon terminal-icon">
+          >
+        </button>
+
+        <button onclick="openFileManager()" class="dock-icon">📁</button>
+
+        <button onclick="openSettings()" class="dock-icon">⚙️</button>
+
+        <button onclick="openCommandPalette()" class="dock-icon">⌘</button>
+      </div>
+    </div>
+
+    <!-- COMMAND PALETTE -->
+
+    <div id="paletteOverlay" class="overlay hidden">
+      <div class="palette">
+        <input id="paletteInput" placeholder="Search commands or actions..." />
+
+        <div id="paletteResults"></div>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+
+    <div id="settingsOverlay" class="overlay hidden">
+      <div class="settings">
+        <div class="settings-header">
+          <h2>Terminal Settings</h2>
+
+          <button onclick="closeSettings()">×</button>
+        </div>
+
+        <label>
+          Theme
+
+          <select id="themeSelect">
+            <option value="mac">macOS Dark</option>
+            <option value="light">Light</option>
+            <option value="ocean">Ocean</option>
+            <option value="forest">Forest</option>
+            <option value="synth">Synthwave</option>
+            <option value="high">High Contrast</option>
+          </select>
+        </label>
+
+        <label>
+          Font size
+
+          <input id="fontSlider" type="range" min="10" max="26" value="14" />
+
+          <span id="fontValue">14px</span>
+        </label>
+
+        <label>
+          AI endpoint
+
+          <input id="aiEndpoint" placeholder="Optional API endpoint" />
+        </label>
+
+        <div class="settings-actions">
+          <button onclick="saveSettings()">Save</button>
+
+          <button onclick="closeSettings()">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DROP OVERLAY -->
+
+    <div id="dropOverlay" class="drop-overlay hidden">
+      <div>
+        <div class="drop-icon">📁</div>
+
+        <h2>Drop files here</h2>
+
+        <p>Files will be imported into ~/Downloads</p>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>.cdx — CodeOS Terminal</title>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div id="desktop">
+      <div id="wallpaper"></div>
+
+      <div class="desktop-topbar">
+        <div class="apple"></div>
+
+        <div class="menu-item active">Terminal</div>
+        <div class="menu-item">File</div>
+        <div class="menu-item">Edit</div>
+        <div class="menu-item">View</div>
+        <div class="menu-item">Shell</div>
+        <div class="menu-item">Window</div>
+        <div class="menu-item">Help</div>
+
+        <div class="topbar-spacer"></div>
+
+        <div id="clock"></div>
+      </div>
+
+      <div id="windows"></div>
+
+      <div class="dock">
+        <button onclick="newTerminal()" class="dock-icon terminal-icon">
+          >
+        </button>
+
+        <button onclick="openFileManager()" class="dock-icon">📁</button>
+
+        <button onclick="openSettings()" class="dock-icon">⚙️</button>
+
+        <button onclick="openCommandPalette()" class="dock-icon">⌘</button>
+      </div>
+    </div>
+
+    <!-- COMMAND PALETTE -->
+
+    <div id="paletteOverlay" class="overlay hidden">
+      <div class="palette">
+        <input id="paletteInput" placeholder="Search commands or actions..." />
+
+        <div id="paletteResults"></div>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+
+    <div id="settingsOverlay" class="overlay hidden">
+      <div class="settings">
+        <div class="settings-header">
+          <h2>Terminal Settings</h2>
+
+          <button onclick="closeSettings()">×</button>
+        </div>
+
+        <label>
+          Theme
+
+          <select id="themeSelect">
+            <option value="mac">macOS Dark</option>
+            <option value="light">Light</option>
+            <option value="ocean">Ocean</option>
+            <option value="forest">Forest</option>
+            <option value="synth">Synthwave</option>
+            <option value="high">High Contrast</option>
+          </select>
+        </label>
+
+        <label>
+          Font size
+
+          <input id="fontSlider" type="range" min="10" max="26" value="14" />
+
+          <span id="fontValue">14px</span>
+        </label>
+
+        <label>
+          AI endpoint
+
+          <input id="aiEndpoint" placeholder="Optional API endpoint" />
+        </label>
+
+        <div class="settings-actions">
+          <button onclick="saveSettings()">Save</button>
+
+          <button onclick="closeSettings()">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DROP OVERLAY -->
+
+    <div id="dropOverlay" class="drop-overlay hidden">
+      <div>
+        <div class="drop-icon">📁</div>
+
+        <h2>Drop files here</h2>
+
+        <p>Files will be imported into ~/Downloads</p>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById("homeMenuItem")?.addEventListener("click", () => {
+        window.location.href = "index.html";
+      });
+    </script>
+
+    <script>
+      (() => {
+        const menuLayer = document.getElementById("codeOSTerminalMenus");
+
+        const menuButtons = document.querySelectorAll("[data-menu]");
+
+        let currentMenu = null;
+
+        function closeMenus() {
+          menuLayer.innerHTML = "";
+
+          currentMenu = null;
+
+          menuButtons.forEach((button) => {
+            button.classList.remove("selected");
+          });
+        }
+
+        function runAction(action) {
+          closeMenus();
+
+          try {
+            action();
+          } catch (error) {
+            console.error("Terminal menu error:", error);
+          }
+        }
+
+        function clearActiveTerminal() {
+          if (window.CodeOSTerminal && window.CodeOSTerminal.clear) {
+            window.CodeOSTerminal.clear();
+          }
+        }
+
+        function selectAllTerminal() {
+          const terminal = document.querySelector(".terminal");
+
+          if (!terminal) return;
+
+          const selection = window.getSelection();
+
+          const range = document.createRange();
+
+          range.selectNodeContents(terminal);
+
+          selection.removeAllRanges();
+
+          selection.addRange(range);
+        }
+
+        function copySelection() {
+          const selection = window.getSelection();
+
+          if (!selection) return;
+
+          const text = selection.toString();
+
+          if (!text) return;
+
+          navigator.clipboard?.writeText(text);
+        }
+
+        function zoomIn() {
+          if (!window.CodeOSTerminal) return;
+
+          window.CodeOSTerminal.setFontSize(
+            window.CodeOSTerminal.getFontSize() + 1,
+          );
+        }
+
+        function zoomOut() {
+          if (!window.CodeOSTerminal) return;
+
+          window.CodeOSTerminal.setFontSize(
+            Math.max(10, window.CodeOSTerminal.getFontSize() - 1),
+          );
+        }
+
+        function resetZoom() {
+          if (!window.CodeOSTerminal) return;
+
+          window.CodeOSTerminal.setFontSize(14);
+        }
+
+        function nextWindow() {
+          if (!window.CodeOSTerminal || !window.CodeOSTerminal.nextWindow) {
+            return;
+          }
+
+          window.CodeOSTerminal.nextWindow();
+        }
+
+        function previousWindow() {
+          if (!window.CodeOSTerminal || !window.CodeOSTerminal.previousWindow) {
+            return;
+          }
+
+          window.CodeOSTerminal.previousWindow();
+        }
+
+        const menus = {
+          terminal: {
+            items: [
+              {
+                icon: "ℹ️",
+                label: "About CodeOS Terminal",
+                action: () => {
+                  alert(
+                    "CodeOS Terminal\\n\\nMacTerminal Pro\\nBrowser-native .cdx terminal.",
+                  );
+                },
+              },
+
+              {
+                icon: "⚙️",
+                label: "Settings…",
+                shortcut: "⌘,",
+                action: openSettings,
+              },
+
+              {
+                divider: true,
+              },
+
+              {
+                icon: "🏠",
+                label: "CodeOS Home",
+                action: () => {
+                  window.location.href = "index.html";
+                },
+              },
+            ],
+          },
+
+          file: {
+            items: [
+              {
+                icon: "➕",
+                label: "New Terminal",
+                shortcut: "⌘N",
+                action: newTerminal,
+              },
+
+              {
+                icon: "📁",
+                label: "File Manager",
+                action: openFileManager,
+              },
+
+              {
+                divider: true,
+              },
+
+              {
+                icon: "❌",
+                label: "Close Terminal",
+                action: () => {
+                  if (
+                    window.CodeOSTerminal &&
+                    window.CodeOSTerminal.closeActive
+                  ) {
+                    window.CodeOSTerminal.closeActive();
+                  }
+                },
+              },
+            ],
+          },
+
+          edit: {
+            items: [
+              {
+                icon: "📋",
+                label: "Copy",
+                shortcut: "⌘C",
+                action: copySelection,
+              },
+
+              {
+                icon: "🔲",
+                label: "Select All",
+                shortcut: "⌘A",
+                action: selectAllTerminal,
+              },
+
+              {
+                icon: "🧹",
+                label: "Clear Screen",
+                shortcut: "Ctrl/⌘L",
+                action: clearActiveTerminal,
+              },
+            ],
+          },
+
+          view: {
+            items: [
+              {
+                icon: "🔎",
+                label: "Zoom In",
+                shortcut: "⌘+",
+                action: zoomIn,
+              },
+
+              {
+                icon: "🔍",
+                label: "Zoom Out",
+                shortcut: "⌘-",
+                action: zoomOut,
+              },
+
+              {
+                icon: "↺",
+                label: "Reset Zoom",
+                shortcut: "⌘0",
+                action: resetZoom,
+              },
+
+              {
+                divider: true,
+              },
+
+              {
+                icon: "⌘",
+                label: "Command Palette",
+                shortcut: "⌘K",
+                action: openCommandPalette,
+              },
+            ],
+          },
+
+          shell: {
+            items: [
+              {
+                icon: "➕",
+                label: "New Window",
+                action: newTerminal,
+              },
+
+              {
+                icon: "➕",
+                label: "New Tab",
+                action: () => {
+                  if (window.CodeOSTerminal && window.CodeOSTerminal.addTab) {
+                    window.CodeOSTerminal.addTab();
+                  }
+                },
+              },
+
+              {
+                icon: "🧹",
+                label: "Clear Screen",
+                action: clearActiveTerminal,
+              },
+            ],
+          },
+
+          window: {
+            items: [
+              {
+                icon: "⬅️",
+                label: "Previous Window",
+                action: previousWindow,
+              },
+
+              {
+                icon: "➡️",
+                label: "Next Window",
+                action: nextWindow,
+              },
+
+              {
+                divider: true,
+              },
+
+              {
+                icon: "⚙️",
+                label: "Settings",
+                action: openSettings,
+              },
+            ],
+          },
+
+          help: {
+            items: [
+              {
+                icon: "📚",
+                label: "Documentation",
+                action: () => {
+                  window.location.href = "documentation.html";
+                },
+              },
+
+              {
+                icon: "⌨️",
+                label: "Keyboard Shortcuts",
+                action: openCommandPalette,
+              },
+
+              {
+                divider: true,
+              },
+
+              {
+                icon: "👾",
+                label: "About CodeOS",
+                action: () => {
+                  alert("CodeOS\\n\\nYour programmable desktop environment.");
+                },
+              },
+            ],
+          },
+        };
+
+        function openMenu(button, menuName) {
+          closeMenus();
+
+          const menu = menus[menuName];
+
+          if (!menu) return;
+
+          const box = document.createElement("div");
+
+          box.className = "codeos-terminal-menu";
+
+          menu.items.forEach((item) => {
+            if (item.divider) {
+              const divider = document.createElement("div");
+
+              divider.className = "codeos-terminal-menu-divider";
+
+              box.appendChild(divider);
+
+              return;
+            }
+
+            const row = document.createElement("div");
+
+            row.className = "codeos-terminal-menu-item";
+
+            const label = document.createElement("div");
+
+            label.className = "codeos-terminal-menu-label";
+
+            label.innerHTML = `
+                    <span>
+                        ${item.icon || ""}
+                    </span>
+
+                    <span>
+                        ${item.label}
+                    </span>
+                    `;
+
+            const shortcut = document.createElement("div");
+
+            shortcut.className = "codeos-terminal-menu-shortcut";
+
+            shortcut.textContent = item.shortcut || "";
+
+            row.append(label, shortcut);
+
+            row.onclick = () => {
+              runAction(item.action);
+            };
+
+            box.appendChild(row);
+          });
+
+          menuLayer.appendChild(box);
+
+          const rect = button.getBoundingClientRect();
+
+          box.style.left = Math.max(6, rect.left) + "px";
+
+          box.style.top = rect.bottom + 4 + "px";
+
+          currentMenu = menuName;
+        }
+
+        menuButtons.forEach((button) => {
+          button.addEventListener("click", (event) => {
+            event.stopPropagation();
+
+            const menuName = button.dataset.menu;
+
+            if (currentMenu === menuName) {
+              closeMenus();
+
+              return;
+            }
+
+            openMenu(button, menuName);
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (
+            !event.target.closest(".codeos-terminal-menu") &&
+            !event.target.closest("[data-menu]")
+          ) {
+            closeMenus();
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeMenus();
+          }
+        });
+      })();
+    </script>
+
+    <script src="app.js"></script>
+  </body>
+</html>
