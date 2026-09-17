@@ -5068,7 +5068,7 @@ for (
     try {
 
         response = await fetch(
-            "http://localhost:3000/api/ai",
+            "https://codeosfinal.onrender.com/api/ai",
             {
                 method: "POST",
 

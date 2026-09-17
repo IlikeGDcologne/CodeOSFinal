@@ -1591,28 +1591,21 @@ async function startAIBackend() {
     ========================================================= */
 
     app.whenReady()
-        .then(async () => {
-            await startCodeOSWebServer();
+    .then(async () => {
+        await startCodeOSWebServer();
+
+        if (!app.isPackaged) {
             await startCodeOSBackend();
-            await startAIBackend();
+        }
 
-            createCodeOSWindow();
+        createCodeOSWindow();
 
-            
-
-            app.on(
-                "activate",
-                () => {
-                    if (
-                        BrowserWindow
-                            .getAllWindows()
-                            .length === 0
-                    ) {
-                        createCodeOSWindow();
-                    }
-                }
-            );
+        app.on("activate", () => {
+            if (BrowserWindow.getAllWindows().length === 0) {
+                createCodeOSWindow();
+            }
         });
+    });
 
 
     app.on(

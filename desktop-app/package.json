@@ -25,12 +25,14 @@
 
   "files": [
     "../**/*",
+    "!../.env",
+    "!../**/.env",
     "!../node_modules/**/*",
     "!../desktop-app/node_modules/**/*",
     "!../dist/**/*",
     "!../.git/**/*",
     "!../backend/node_modules/**/*"
-  ],
+],
 
   "win": {
     "target": [
